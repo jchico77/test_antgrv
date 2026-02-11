@@ -106,7 +106,7 @@ export const PlanView: React.FC = () => {
             { label: 'Evening', startHour: 17, endHour: 23 }
         ];
 
-        const getBlockStyle = (label: string) => {
+        const getBlockStyle = (_label: string) => {
             const baseOpacity = settings.blockOpacity || 0.1;
             const color = settings.blockColor || 'neutral';
 
