@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTaskStore } from '../store/useTaskStore';
-import type { Task } from '../types';
 import { cn } from '../lib/utils';
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, GripVertical, CheckCircle2, FileText } from 'lucide-react';
-import { format, addDays, startOfWeek, addWeeks, isSameDay, startOfDay } from 'date-fns';
+import { Calendar as CalendarIcon, GripVertical, CheckCircle2, FileText } from 'lucide-react';
+import { format, addDays, startOfWeek, addWeeks, isSameDay } from 'date-fns';
 
 export const PlanView: React.FC = () => {
     const { tasks, toggleTask, settings, assignTaskToTimeSlot, assignTaskToDate, selectTask, selectedTaskId } = useTaskStore();
@@ -172,7 +171,7 @@ export const PlanView: React.FC = () => {
 
                                 {/* Time Blocks */}
                                 <div className="flex-1 flex flex-col overflow-hidden">
-                                    {timeBlocks.map((block, index) => {
+                                    {timeBlocks.map((block) => {
                                         const blockTasks = tasksForDay.filter(t => getBlockForTime(t.plannedTime) === block.label);
                                         const { bgClass, textClass } = getBlockStyle(block.label);
                                         // Dynamic inline style for background opacity is simpler than tailwind arbitrary values for variable opacity
